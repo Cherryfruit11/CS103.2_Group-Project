@@ -2,9 +2,59 @@
 #include <string>
 using namespace std;
 
-int main() {
+int main()   
+{
+    string username = "";
+    string password = "";
+    bool loginSucess = false;
+    
+    do
+    {
+        cout<<"Username: ";
+        cin>>username;
+        cout<<"\nPassword: ";
+        cin>>password;
 
-string username = "";
-string password = "";
-bool loginSucess = false;
+        if (username != "Admin" || password != "Pass")
+        {
+            cout<<"Username or Password Incorrect"<<endl;
+        }
+        else
+        {
+            cout<<"Welcome Admin"<<endl;
+        }
+
+    } while (username != "Admin" && password != "Pass");
+    
+    do
+    {
+        char opt;
+
+        cout<<"list of options: opt\n"; //however many options we'll have
+        cout<<"Enter Option: ";
+        cin>>opt;
+
+        switch (opt)
+        {
+        case 's':
+        {
+            cout<<"stuff"
+            break;
+        }
+        case 'e'
+        {
+            cout<<"exit"
+            break;
+        }
+        default:
+        {
+            cout<<"\nPlease pick from the Available Options\n";
+            break;
+        }
+        }
+    } while (char != 'e');
+    
+
+
+
 }
