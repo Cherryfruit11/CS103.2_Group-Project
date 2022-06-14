@@ -39,7 +39,7 @@ int main()
         {
         case 'S':
         {
-            cout<<"stuff"
+            cout<<"stuff";
             break;
         }
         case 'e'
