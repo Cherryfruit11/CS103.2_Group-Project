@@ -29,21 +29,58 @@ int main()
     do
     {
         char opt;
+        int end;
 
-        cout<<"list of options: opt\n"; //however many options we'll have
-        cout<<"Enter Option: ";
+        cout<<"\nParent/Student Information: P"; //more so contact info + option to add new child info
+        cout<<"\nStudent Information: S"; //I'll put all the student stuff in this one
+        cout<<"\nSign out / Exit: X";
+        cout<<"\nEnter Option: ";
         cin>>opt;
 
         switch (opt)
         {
-        case 's':
+        case 'P':
         {
-            cout<<"stuff"
+            int P = 0;
+            do
+            {
+                cout<<"\nParent Contact Information: C";
+                cout<<"\nAdd Student Information: A";
+                cout<<"\nReturn: X";
+                cout<<"\nEnter Option: ";
+                cin>>opt;
+
+                switch (opt)
+                {
+                case 'C':
+                {
+                    cout<<"\nwhich Parent to students and their contact information";
+                    cout<<"\nMaybe some more options to pick from as well";
+                    break;
+                }
+                case 'A':
+                {
+                    cout<<"\ndefinitely another do/while thing";
+                    break;
+                }
+                default:
+                {
+                    cout<<"\n:Option invalid: Please understand that Options are Case Sensitive.";
+                    break;
+                }
+                }
+            } while (P != 1);
             break;
         }
-        case 'e'
+        case 'S':
         {
-            cout<<"exit"
+            
+            break;
+        }
+        case 'X'
+        {
+            cout<<"Logging out";
+            end = 1;
             break;
         }
         default:
@@ -52,5 +89,5 @@ int main()
             break;
         }
         }
-    } while (char != 'e');
+    } while (end != 1);
 }
