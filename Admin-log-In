@@ -85,61 +85,7 @@ void adminLogin()
 
 void registr()
 {
-	//local variables 
-	string u_name, pwd, role, line, data;
-	int ch;
-	bool rego = true;    // default rego true ,condition for unique registration
-
-	//get user data from user for registration
-	cout << "\n Select your role\t"
-		<< "1: Student\t 2: Teacher :  ";
-	cin >> ch;
-	cin.ignore();
-	cout << "\n Enter username: ";
-	getline(cin, u_name);
-
-	//check if user already exist
-	ifstream userFile;
-	userFile.open("users.txt", ios::in);  // open users.txt file in read mode
-	while (getline(userFile, line))		// read each line of the userFile
-	{
-		if (line.find(u_name) != string::npos)	// check if username exist
-			rego = false;							//if yes, turn rego false
-	}
-	userFile.close();  //close userFile
-
-	if (rego)  // if rego is true then do registration
-	{
-		ofstream infile;
-		infile.open("users.txt", ios::app); // open user file in write mode
-
-		//ask for password only if username is unique
-		cout << " Enter password: ";
-		getline(cin, pwd);
-		if (ch == 1)
-		{
-			role = "student";
-			cout << "\n Student Registration Successful!!\n";
-		}
-		else
-		{
-			role = "teacher";
-			cout << "\n Teacher Registration Successful!!\n";
-		}
-
-		infile << u_name << "\t" << pwd << "\t" << role << endl; // write data to the file
-		//user.clear();
-		infile.close();   //close file
-
-	}
-	else
-	{
-		cout << "\n Sorry username exist!!\n";
-	}
-
-	// to pause and clear screen
-	system("pause");
-	system("CLS");
+	
 }
 
 void login()
