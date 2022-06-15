@@ -20,80 +20,41 @@ vector<users>user;
 
 int main()
 {
-	//Select menu :>
+   string username = "";
+   string password = "";
+bool loginSucess = false; 
 
-	int selection;
-	cout << "***********************************************************************\n\n\n";
-	cout << "                      Welcome The School System              \n\n";
-	cout << "************************  Log-in Page **************************\n\n";
-	
-	cout << "Admin Log-in\n";
-	cout << "\nParent Log-in\n";
-	cout << "\nTeacher Log-in\n";
-	cout << "\nRegister\n";
-	cout << "\nForgot Password\n";
-	cout << "\nExit\n";
-
-	cout << "\nPlease select the option you want :";
-	cin >> selection; 
-	cout << endl;
-
-	switch(selection)
-	{  
-	case 1: 
-		adminLogin();
-		break;
-	case 2:
-		parentLogin();
-		break;
-	case 3:
-		teacherLogin();
-		break;
-	case 4:
-		registr(); 
-		break;
-	case 5:
-		
-	case 6:
-		cout << "Closing down application";
-		break;
-	default:
-		cout << "Please try again"; 
-		main();
-	}
-    
-	while (selection != 4); 
-	
-	//_______________________________________________________________________
-}
-
-void parentLogin()
+do
 {
-	
+cout << "Username: ";
+cin >> username;
+cout << "\nPassword: ";
+cin >> password;
 
-}
-
-void teacherLogin()
+if (username != "" || password != "Pass")
 {
-
+cout << "Username or Password Incorrect" << endl;
 }
-
-void adminLogin()
+else
 {
-
+cout << "Welcome " << endl;
 }
 
-void registr()
+} while (username != "" && password != "Pass"); 
+
+do
 {
-	
-}
+char opt;
 
-void login()
+cout << "Please select what you want to do";
+cin >> opt;
+
+switch (opt)
 {
-	
-}
-
-void changePassword()
+case 's':
 {
+cout << "information"; //add however many we need
+break; 
 }
-
+}
+}
