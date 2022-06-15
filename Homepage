@@ -5,7 +5,11 @@
 #include <sstream>
 using namespace std;
 
-
+void adminLogin();
+void teacherLogin();
+void parentLogin();
+void registr();
+void ForgotPassword();
 
 struct users
 {
@@ -23,38 +27,63 @@ int main()
 	cout << "                      Welcome The School System              \n\n";
 	cout << "************************  Log-in Page **************************\n\n";
 
-	cout << "Admin Log-in\n";
-	cout << "\nParent Log-in\n";
-	cout << "\nTeacher Log-in\n";
-	cout << "\nRegister\n";
-	cout << "\nForgot Password\n";
-	cout << "\nExit\n";
 
-	cout << "\nPlease select the option you want :";
-	cin >> selection;
-	cout << endl;
-
-	switch (selection)
+	do
 	{
-	case 1:
-		//add stuff 
-    break;
-	case 2:
+		cout << "\nAdmin Log-in: 1";
+		cout << "\nTeacher Log-in: 2";
+		cout << "\nParent Log-in: 3";
+		cout << "\nRegister: 4";
+		cout << "\nForgot Password: 5";
+		cout << "\nExit: 6";
+		cout << endl;
 		
-		break;
-	case 3:
+		cout << "\nPlease select the option you want :";
+		cin >> selection;
+		cout << endl;
 		
-		break;
-	case 4:
-		
-		break;
-	case 5:
+		switch (selection)
+		{
+		case 1:
+		{
+			adminLogin();
+			break;
+		}
+		case 2:
+		{
+			teacherLogin();
+			break;
+		}
+		case 3:
+		{
+			parentLogin();
+			break;
+		}
+		case 4:
+		{
+			registr();
+			break;
+		}
+		case 5:
+		{
+			ForgotPassword();
+			break;
+		}
+		case 6:
+		{
+			cout << "\nClosing down application";
+			break;
+		}
+		default:
+		{
+			cout << "\nPlease choose from the available options";
+			break;
+		}
+		}
+	} while (selection != 6);
+}
 
-	case 6:
-		cout << "Closing down application";
-		break;
-	default:
-		cout << "Please try again";
-		main();
-	}
+void adminLogin()
+{
+	
 }

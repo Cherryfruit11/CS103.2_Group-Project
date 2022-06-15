@@ -5,57 +5,39 @@
 #include <sstream>
 using namespace std;
 
-void adminLogin();
-void teacherLogin();
-void parentLogin();
-void registr();
-void changePassword(); 
-
 struct users
 {
-	string username, password;
+	
 };
 
 vector<users>user; 
 
 int main()
 {
-   string username = "";
-   string password = "";
-bool loginSucess = false; 
+   int attempts = 0;
 
-do
-{
-cout << "Username: ";
-cin >> username;
-cout << "\nPassword: ";
-cin >> password;
+   do
+   {
+      cout << "\n:: Admin Log-in ::\n";
 
-if (username != "" || password != "Pass")
-{
-cout << "Username or Password Incorrect" << endl;
-}
-else
-{
-cout << "Welcome " << endl;
-}
+      cout << "\nUsername: ";
+      cin >> username;
+      cout << "\nPassword: ";
+      cin >> password;
+      if (username != "" || password != "Pass")
+      {
+         cout << "Username or Password Incorrect" << endl;
+         attempts++;
+      }
+      else
+      {
+         cout << "Welcome " << endl;
+      }
+   } while (username != userCheck && password != passCheck || attempts != 3); 
 
-} while (username != "" && password != "Pass"); 
-
-do
-{
-char opt;
-
-cout << "Please select what you want to do";
-cin >> opt;
-
-switch (opt)
-{
-case 's':
-{
-cout << "information"; //add however many we need
-break; 
-}
-}
-}
+   if (attempts == 3)
+   {
+      cout << "\nYou have failed to imput correct"
+      main();
+   }
 }
