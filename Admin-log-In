@@ -2,42 +2,135 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <string.h>
+#include <cstdio> 
 #include <sstream>
+#include <iomanip>
 using namespace std;
+
+void adminLogin(); //user defined functions
+
 
 struct users
 {
-	
+	string username, password, role;
 };
 
-vector<users>user; 
+vector<users>user; //global vect
+
+struct studentInfo
+{
+	string fname;
+	string lname;
+	string Registration;
+	string classes;
+};
 
 int main()
 {
-   int attempts = 0;
+	//Select menu :>
 
-   do
-   {
-      cout << "\n:: Admin Log-in ::\n";
+	int selection;
+	cout << "***********************************************************************\n\n\n";
+	cout << "                      Welcome To The School System              \n\n";
+	cout << "************************  Log-in Page **************************\n\n";
 
-      cout << "\nUsername: ";
-      cin >> username;
-      cout << "\nPassword: ";
-      cin >> password;
-      if (username != "" || password != "Pass")
-      {
-         cout << "Username or Password Incorrect" << endl;
-         attempts++;
-      }
-      else
-      {
-         cout << "Welcome " << endl;
-      }
-   } while (username != userCheck && password != passCheck || attempts != 3); 
 
-   if (attempts == 3)
-   {
-      cout << "\nYou have failed to imput correct"
-      main();
-   }
+	do
+	{
+		cout << "\nAdmin Log-in: 1";
+		cout << "\nTeacher Log-in: 2";
+		cout << "\nParent Log-in: 3";
+		cout << "\nRegister: 4";
+		cout << "\nForgot Password: 5";
+		cout << "\nExit: 6";
+		cout << endl;
+
+		cout << "\nPlease select the option you want :";
+		cin >> selection;
+
+		system("cls"); //clear screen
+
+		switch (selection)
+		{
+		case 1:
+		{
+			adminLogin();
+			break;
+		}
+		case 2:
+		{
+
+			break;
+		}
+		case 3:
+		{
+
+			break;
+		}
+		case 4:
+		{
+
+			break;
+		}
+		case 5:
+		{
+
+			break;
+		}
+		case 6:
+		{
+			cout << "\nClosing down application";
+			break;
+		}
+		default:
+		{
+			cout << "\nPlease choose from the available options";
+			break;
+		}
+		}
+	} while (selection != 3); //or 3 
+}
+
+void adminLogin()
+{
+	string username = "";
+	string password = "";
+	bool loginSuccess = false;
+	int attempts = 0;
+
+	for (int attempts = 0; attempts < 6; ++attempts) //divided by 2 to equal the amount of attempts
+	{
+		cout << "***********************************************************************\n\n\n";
+		cout << "                      Welcome To The School System              \n\n";
+		cout << "************************  Admin Log-In **************************\n\n";
+
+		//user input
+		cout << "\nUser :";
+		cin >> username;
+		cout << "\nPassword :";
+		cin >> password;
+		++attempts;
+
+		if (password == "123") //set ID password
+		{
+			cout << "\nSucessful Login, Welcome Admin\n";
+			bool loginSucess = true;
+
+			char opt;
+
+			cout << "Enter what you would like to do:";
+			//Bug where it loops back to inserting user
+
+
+
+
+		}
+		else
+		{
+			cout << "\nIncorrect User, please try again\n";
+
+
+		}
+	}
 }
