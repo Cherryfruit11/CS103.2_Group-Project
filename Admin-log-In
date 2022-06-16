@@ -89,7 +89,7 @@ int main()
 			break;
 		}
 		}
-	} while (selection != 3); //or 3 
+	} while (selection != 6); //or 6
 }
 
 void adminLogin()
@@ -99,38 +99,37 @@ void adminLogin()
 	bool loginSuccess = false;
 	int attempts = 0;
 
-	for (int attempts = 0; attempts < 6; ++attempts) //divided by 2 to equal the amount of attempts
+	do
 	{
 		cout << "***********************************************************************\n\n\n";
 		cout << "                      Welcome To The School System              \n\n";
 		cout << "************************  Admin Log-In **************************\n\n";
-
-		//user input
-		cout << "\nUser :";
+		
+		cout << "\nUsername: ";
 		cin >> username;
-		cout << "\nPassword :";
+		cout << "\nPassword: ";
 		cin >> password;
-		++attempts;
 
-		if (password == "123") //set ID password
+		if (password == "123" || username == "user") //set ID password
 		{
 			cout << "\nSucessful Login, Welcome Admin\n";
-			bool loginSucess = true;
-
-			char opt;
-
-			cout << "Enter what you would like to do:";
-			//Bug where it loops back to inserting user
-
-
-
-
+			loginSuccess = true;
 		}
 		else
 		{
-			cout << "\nIncorrect User, please try again\n";
-
-
+			cout << "\nIncorrect Username or Password, please try again\n";
+			attempts++
 		}
+
+	} while (loginSuccess != true || attempts != 3);
+
+	if(attempts == 3 && loginSuccess != true)
+	{
+		cout << "You have entered the wrong user details too many times";
+		system("cls");
+		main();
+	}
+	else {
+		cout << "Welcome Admin";
 	}
 }
