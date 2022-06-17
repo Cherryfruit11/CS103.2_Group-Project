@@ -125,7 +125,7 @@ void adminLogin()
 
 	} while (loginSuccess != false|| attempts != 3);
 
-	if (attempts == 3 && loginSuccess != true) //no current function (need to fix) 
+	if (attempts == 3 && loginSuccess != true) 
 	{
 		cout << "\n\nYou have entered the wrong user details too many times\n\n";
 		system("pause"); 
