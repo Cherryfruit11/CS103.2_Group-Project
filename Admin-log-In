@@ -6,7 +6,11 @@
 #include <cstdio> 
 #include <sstream>
 #include <iomanip>
+#include <windows.h>
+#include <conio.h> 
 using namespace std;
+
+#define ATTEMPTS 3 
 
 void adminLogin(); //user defined functions
 
@@ -18,38 +22,27 @@ struct users
 
 vector<users>user; //global vect
 
-struct studentInfo
-{
-	string fname;
-	string lname;
-	string Registration;
-	string classes;
-};
+
 
 int main()
 {
-	//Select menu :>
 
 	int selection;
-	cout << "***********************************************************************\n\n\n";
+	cout << "\n***********************************************************************\n\n\n";
 	cout << "                      Welcome To The School System              \n\n";
-	cout << "************************  Log-in Page **************************\n\n";
+	cout << "\n************************  Log-in Page **************************\n\n";
 
-
-	do
-	{
-		cout << "\nAdmin Log-in: 1";
-		cout << "\nTeacher Log-in: 2";
-		cout << "\nParent Log-in: 3";
-		cout << "\nRegister: 4";
-		cout << "\nForgot Password: 5";
-		cout << "\nExit: 6";
-		cout << endl;
+		cout << "\nAdmin Log-in: 1" << endl;
+		cout << "\nTeacher Log-in: 2" << endl;
+		cout << "\nParent Log-in: 3" << endl;
+		cout << "\nRegister: 4" << endl;
+		cout << "\nForgot Password: 5" << endl;
+		cout << "\nExit: 6" << endl;
 
 		cout << "\nPlease select the option you want :";
 		cin >> selection;
-
-		system("cls"); //clear screen
+		cout << endl;
+        system("cls"); //clear screen
 
 		switch (selection)
 		{
@@ -60,36 +53,41 @@ int main()
 		}
 		case 2:
 		{
-
+		 //teacherLogin
 			break;
 		}
 		case 3:
 		{
-
+         //parentLogin
 			break;
 		}
 		case 4:
 		{
-
+		  //Regstr();
 			break;
 		}
 		case 5:
 		{
+		  //forgotPass();
 
 			break;
 		}
 		case 6:
 		{
-			cout << "\nClosing down application";
+			cout << "\n\nClosing down, Thank you for using this application\n\n";
+			system("exit"); 
 			break;
 		}
 		default:
 		{
-			cout << "\nPlease choose from the available options";
+			cout << "\n\nPlease choose from the available options\n\n" << endl;
+			main(); 
 			break;
+			
+			
 		}
-		}
-	} while (selection != 6); //or 6
+		
+	} 
 }
 
 void adminLogin()
@@ -98,38 +96,45 @@ void adminLogin()
 	string password = "";
 	bool loginSuccess = false;
 	int attempts = 0;
+	char opt = 0;
 
 	do
 	{
 		cout << "***********************************************************************\n\n\n";
 		cout << "                      Welcome To The School System              \n\n";
 		cout << "************************  Admin Log-In **************************\n\n";
-		
+
 		cout << "\nUsername: ";
 		cin >> username;
 		cout << "\nPassword: ";
 		cin >> password;
 
 		if (password == "123" || username == "user") //set ID password
-		{
+		{//admin options portal
 			cout << "\nSucessful Login, Welcome Admin\n";
-			loginSuccess = true;
-		}
+		 	break;
+	 	}
 		else
 		{
-			cout << "\nIncorrect Username or Password, please try again\n";
-			attempts++
+			cout << "\n\nIncorrect Username or Password, please try again\n\n"; //function works
+			attempts++;
+			system("pause");
+			system("cls"); 
+		      
 		}
 
-	} while (loginSuccess != true || attempts != 3);
+	} while (loginSuccess != false|| attempts != 3);
 
-	if(attempts == 3 && loginSuccess != true)
+	if (attempts == 3 && loginSuccess != true) //no current function (need to fix) 
 	{
-		cout << "You have entered the wrong user details too many times";
-		system("cls");
+		cout << "\n\nYou have entered the wrong user details too many times\n\n";
+		system("pause"); 
 		main();
 	}
 	else {
-		cout << "Welcome Admin";
+		cout << "";
 	}
 }
+
+
+
