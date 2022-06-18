@@ -12,8 +12,10 @@ using namespace std;
 
 #define ATTEMPTS 3 
 
-void adminLogin(); //user defined functions
+void adminLogin();
+void adminMenu();
 
+//user defined functions
 
 struct users
 {
@@ -22,7 +24,39 @@ struct users
 
 vector<users>user; //global vect
 
+//________________________________________
+class Node {
+public:
+	int roll;
+	string Name;
+	string Dept;
+	Node* next;
+};
 
+// Stores the head of the Linked List
+Node* head = new Node();
+
+// Check Function to check that if
+// Record Already Exist or Not
+bool check(int x)
+{
+	// Base Case
+	if (head == NULL)
+		return false;
+
+	Node* t = new Node;
+	t = head;
+
+	// Traverse the Linked List
+	while (t != NULL) {
+		if (t->roll == x)
+			return true;
+		t = t->next;
+	}
+
+	return false;
+}
+//_______________________________________
 
 int main()
 {
@@ -32,62 +66,62 @@ int main()
 	cout << "                      Welcome To The School System              \n\n";
 	cout << "\n************************  Log-in Page **************************\n\n";
 
-		cout << "\nAdmin Log-in: 1" << endl;
-		cout << "\nTeacher Log-in: 2" << endl;
-		cout << "\nParent Log-in: 3" << endl;
-		cout << "\nRegister: 4" << endl;
-		cout << "\nForgot Password: 5" << endl;
-		cout << "\nExit: 6" << endl;
+	cout << "\nAdmin Log-in: 1" << endl;
+	cout << "\nTeacher Log-in: 2" << endl;
+	cout << "\nParent Log-in: 3" << endl;
+	cout << "\nRegister: 4" << endl;
+	cout << "\nForgot Password: 5" << endl;
+	cout << "\nExit: 6" << endl;
 
-		cout << "\nPlease select the option you want :";
-		cin >> selection;
-		cout << endl;
-        system("cls"); //clear screen
+	cout << "\nPlease select the option you want :";
+	cin >> selection;
+	cout << endl;
+	system("cls"); //clear screen
 
-		switch (selection)
-		{
-		case 1:
-		{
-			adminLogin();
-			break;
-		}
-		case 2:
-		{
-		 //teacherLogin
-			break;
-		}
-		case 3:
-		{
-         //parentLogin
-			break;
-		}
-		case 4:
-		{
-		  //Regstr();
-			break;
-		}
-		case 5:
-		{
-		  //forgotPass();
+	switch (selection)
+	{
+	case 1:
+	{
+		adminLogin();
+		break;
+	}
+	case 2:
+	{
+		//teacherLogin
+		break;
+	}
+	case 3:
+	{
+		//parentLogin
+		break;
+	}
+	case 4:
+	{
+		//Regstr();
+		break;
+	}
+	case 5:
+	{
+		//forgotPass();
 
-			break;
-		}
-		case 6:
-		{
-			cout << "\n\nClosing down, Thank you for using this application\n\n";
-			system("exit"); 
-			break;
-		}
-		default:
-		{
-			cout << "\n\nPlease choose from the available options\n\n" << endl;
-			main(); 
-			break;
-			
-			
-		}
-		
-	} 
+		break;
+	}
+	case 6:
+	{
+		cout << "\n\nClosing down, Thank you for using this application\n\n";
+		system("exit");
+		break;
+	}
+	default:
+	{
+		cout << "\n\nPlease choose from the available options\n\n" << endl;
+		main();
+		break;
+
+
+	}
+
+	}
 }
 
 void adminLogin()
@@ -96,44 +130,267 @@ void adminLogin()
 	string password = "";
 	bool loginSuccess = false;
 	int attempts = 0;
-	char opt = 0;
+	char option;
 
-	do
+
+	while (loginSuccess != true)
 	{
-		cout << "***********************************************************************\n\n\n";
+		cout << "\n\n***********************************************************************\n\n\n";
 		cout << "                      Welcome To The School System              \n\n";
-		cout << "************************  Admin Log-In **************************\n\n";
+		cout << "\n\n************************  Admin Log-In **************************\n\n";
 
 		cout << "\nUsername: ";
 		cin >> username;
 		cout << "\nPassword: ";
 		cin >> password;
 
+
 		if (password == "123" || username == "user") //set ID password
 		{//admin options portal
+			loginSuccess = true;
+
 			cout << "\nSucessful Login, Welcome Admin\n";
-		 	break;
-	 	}
+			cout << "\nAdmin Menu\n";
+			cout << "\nPlease Select Option: \n";
+			cin >> option;
+
+			switch (option)
+			{
+			case 'm':
+			{
+				adminMenu();
+				break;
+
+			}
+			default:
+			{
+				cout << "Please select correct option";
+				break;
+			}
+			}
+		}
 		else
 		{
-			cout << "\n\nIncorrect Username or Password, please try again\n\n"; //function works
 			attempts++;
-			system("pause");
-			system("cls"); 
-		      
+
+			if (attempts == 3)
+			{
+				cout << "\n\nYou have entered the wrong user details too many times\n\n";
+				cout << "\nPassword Attempt: " << attempts << "\n";
+				system("pause");
+				system("cls");
+				main();
+			}
+			else {
+				cout << "\n\nIncorrect Username or Password, please try again\n\n"; //function works
+				cout << "\nPassword Attempt: " << attempts << "\n";
+				system("pause");
+				system("cls");
+				cout << "";
+
+			}
+		}
+	}
+}
+
+// Function to insert the record
+void Insert_Record(int roll, string Name,
+	string Dept)
+{
+	// if Record Already Exist
+	if (check(roll)) {
+		cout << "Student with this "
+			<< "record Already Exists\n";
+		return;
+	}
+
+	// Create new Node to Insert Record
+	Node* t = new Node();
+	t->roll = roll;
+	t->Name = Name;
+	t->Dept = Dept;
+	t->next = NULL;
+
+	// Insert at Begin
+	if (head == NULL
+		|| (head->roll >= t->roll)) {
+		t->next = head;
+		head = t;
+	}
+
+	// Insert at middle or End
+	else {
+		Node* c = head;
+		while (c->next != NULL
+			&& c->next->roll < t->roll) {
+			c = c->next;
+		}
+		t->next = c->next;
+		c->next = t;
+	}
+
+	cout << "Record Inserted "
+		<< "Successfully\n";
+	system("pause");
+	system("cls");
+}
+
+// Function to search record for any
+// students Record with roll number
+void Search_Record(int roll)
+{
+	// if head is NULL
+	if (!head) {
+		cout << "No such Record "
+			<< "Available\n";
+		system("pause");
+		return;
+	}
+
+	// Otherwise
+	else {
+		Node* p = head;
+		while (p) {
+			if (p->roll == roll) {
+				cout << "Roll Number\t"
+					<< p->roll << endl;
+				cout << "Name\t\t"
+					<< p->Name << endl;
+				cout << "Department\t"
+					<< p->Dept << endl;
+				return;
+			}
+			p = p->next;
 		}
 
-	} while (loginSuccess != false|| attempts != 3);
+		if (p == NULL)
+			cout << "No such Record "
+			<< "Available\n";
+		system("pause");
 
-	if (attempts == 3 && loginSuccess != true) 
-	{
-		cout << "\n\nYou have entered the wrong user details too many times\n\n";
-		system("pause"); 
-		main();
+	}
+}
+
+// Function to delete record students
+// record with given roll number
+// if it exist
+int Delete_Record(int roll)
+{
+	Node* t = head;
+	Node* p = NULL;
+
+	// Deletion at Begin
+	if (t != NULL
+		&& t->roll == roll) {
+		head = t->next;
+		delete t;
+
+		cout << "Record Deleted "
+			<< "Successfully\n";
+		return 0;
+	}
+
+	// Deletion Other than Begin
+	while (t != NULL && t->roll != roll) {
+		p = t;
+		t = t->next;
+	}
+	if (t == NULL) {
+		cout << "Record does not Exist\n";
+		return -1;
+		p->next = t->next;
+
+		delete t;
+		cout << "Record Deleted "
+			<< "Successfully\n";
+
+
+		return 0;
+	}
+}
+
+void Show_Record()
+{
+	Node* p = head;
+	if (p == NULL) {
+		cout << "No Record "
+			<< "Available\n";
 	}
 	else {
-		cout << "";
+		cout << "Index :\tName :\tCourse :"
+			<< "\t\n";
+
+		// Until p is not NULL
+		while (p != NULL) {
+			cout << p->roll << "    \t"
+				<< p->Name << "\t"
+				<< p->Dept << endl;
+
+			p = p->next;
+		}
 	}
+}
+
+
+void adminMenu()
+{
+	head = NULL;
+	string Name, Course;
+	int Roll;
+
+	// Menu-driven program
+	while (true) {
+		cout << "\n\t\tWelcome to Student Record "
+			"Management System\n\n\tPress\n\t1 to "
+			"create a new Record\n\t2 to delete a "
+			"student record\n\t3 to Search a Student "
+			"Record\n\t4 to view all students "
+			"record\n\t5 to Exit\n";
+		cout << "\nEnter your Choice :\n";
+		int Choice;
+
+
+		// Enter Choice
+		cin >> Choice;
+		system("cls");
+		if (Choice == 1) {
+			cout << "*********************";
+			cout << "\nCreate a New Record\n";
+			cout << "*********************\n\n";
+			cout << "Enter Name of Student :\n";
+			cin >> Name;
+			cout << "\nEnter Roll Number of Student :\n";
+			cin >> Roll;
+			cout << "\nEnter Course of Student : \n";
+			cin >> Course;
+			Insert_Record(Roll, Name, Course);
+		}
+		else if (Choice == 2) {
+			cout << "Enter Roll Number of Student whose "
+				"record is to be deleted\n";
+			cin >> Roll;
+			Delete_Record(Roll);
+		}
+		else if (Choice == 3) {
+			cout << "Enter Roll Number of Student whose "
+				"record you want to Search\n";
+			cin >> Roll;
+			Search_Record(Roll);
+		}
+		else if (Choice == 4) {
+			Show_Record();
+		}
+		else if (Choice == 5) {
+			exit(0);
+		}
+		else {
+			cout << "Invalid Choice "
+				<< "Try Again\n";
+			break;
+		}
+		
+	}
+
 }
 
 
