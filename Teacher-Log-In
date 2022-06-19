@@ -89,24 +89,17 @@ void Register()
 	}
 	userFile.close();  //close userFile
 
-	if (rego)  // if rego is true then do registration
+	if (rego)
 	{
 		ofstream infile;
 		infile.open("users.txt", ios::app); // open user file in write mode
 
-		//ask for password only if username is unique
 		cout << " Enter password: ";
 		getline(cin, pwd);
-		if (ch == 1)
-		{
-			role = "student";
-			cout << "\n Student Registration Successful!!\n";
-		}
-		else
-		{
-			role = "teacher";
-			cout << "\n Teacher Registration Successful!!\n";
-		}
+		
+		role = "teacher";
+		cout << "\n Teacher Registration Successful!!\n";
+		
 
 		infile << u_name << "\t" << pwd << "\t" << role << endl; // write data to the file
 		//user.clear();
@@ -115,10 +108,9 @@ void Register()
 	}
 	else
 	{
-		cout << "\n Sorry username exist!!\n";
+		cout << "\nSorry username exist\n";
 	}
 
-	// to pause and clear screen
 	system("pause");
 	system("CLS");
 }
