@@ -1,93 +1,136 @@
 #include <iostream>
+#include <fstream>
+#include <vector>
 #include <string>
+#include <sstream>
 using namespace std;
+
+void TeacherLogin();
+void Register();
+void ForgotPassword();
+void TeacherMenu();
+
+struct user
+{
+    string usename, password;
+};
 
 int main() 
 {
-    string username = "";
-    string password = "";
-    bool loginSucess = false;
+    int selection;
     
-    do
-    {
-        cout<<"Username: ";
-        cin>>username;
-        cout<<"\nPassword: ";
-        cin>>password;
-
-        if (username != "" || password != "Pass")
-        {
-            cout<<"Username or Password Incorrect"<<endl;
-        }
-        else
-        {
-            cout<<"Welcome "<<endl;
-        }
-
-    } while (username != "" && password != "Pass");
+    cout << "\n\n***********************************************************************\n\n\n";
+	cout << "                        Welcome To The School System              \n\n";
+	cout << "\n\n**************************  Teacher Log-In ****************************\n\n";
+    
+    cout << "\nLog-in: 1";
+    cout << "\nForgot Password: 2";
+    cout << "\nRegister: 3";
+    cout << "\nReturn: 4";
 
     do
     {
-        char opt;
-        int end;
+        
+        cout << "\nOption: ";
+        cin >> selection;
 
-        cout<<"\nParent/Student Information: P"; //more so contact info + option to add new child info
-        cout<<"\nStudent Information: S"; //I'll put all the student stuff in this one
-        cout<<"\nSign out / Exit: X";
-        cout<<"\nEnter Option: ";
-        cin>>opt;
-
-        switch (opt)
+        switch (selection)
         {
-        case 'P':
+        case 1:
         {
-            int P = 0;
-            do
-            {
-                cout<<"\nParent Contact Information: C";
-                cout<<"\nAdd Student Information: A";
-                cout<<"\nReturn: X";
-                cout<<"\nEnter Option: ";
-                cin>>opt;
-
-                switch (opt)
-                {
-                case 'C':
-                {
-                    cout<<"\nwhich Parent to students and their contact information";
-                    cout<<"\nMaybe some more options to pick from as well";
-                    break;
-                }
-                case 'A':
-                {
-                    cout<<"\ndefinitely another do/while thing";
-                    break;
-                }
-                default:
-                {
-                    cout<<"\n:Option invalid: Please understand that Options are Case Sensitive.";
-                    break;
-                }
-                }
-            } while (P != 1);
+            Login();
             break;
         }
-        case 'S':
+        case 2:
         {
-            
+            ForgotPassword();
             break;
         }
-        case 'X'
+        case 3:
         {
-            cout<<"Logging out";
-            end = 1;
+            Register();
+            break;
+        }
+        case 4:
+        {
+            //homepage?
+            //main(); ?
             break;
         }
         default:
         {
-            cout<<"\nPlease pick from the Available Options\n";
+            cout << "\nInvalid option try again";
             break;
         }
         }
-    } while (end != 1);
+
+    } while (selection != 3);
+    
+}
+
+void Register()
+{
+    //local variables 
+	string u_name, pwd, role,line,data;
+	int ch;
+	bool rego = true;    // default rego true ,condition for unique registration
+
+	//get user data from user for registration
+	cout << "\n Enter username: ";
+	getline(cin, u_name);
+
+	//check if user already exist
+	ifstream userFile;
+	userFile.open("users.txt", ios::in);  // open users.txt file in read mode
+	while (getline(userFile, line))		// read each line of the userFile
+	{
+		if (line.find(u_name) != string::npos  )	// check if username exist
+			rego = false;							//if yes, turn rego false
+	}
+	userFile.close();  //close userFile
+
+	if (rego)  // if rego is true then do registration
+	{
+		ofstream infile;
+		infile.open("users.txt", ios::app); // open user file in write mode
+
+		//ask for password only if username is unique
+		cout << " Enter password: ";
+		getline(cin, pwd);
+		if (ch == 1)
+		{
+			role = "student";
+			cout << "\n Student Registration Successful!!\n";
+		}
+		else
+		{
+			role = "teacher";
+			cout << "\n Teacher Registration Successful!!\n";
+		}
+
+		infile << u_name << "\t" << pwd << "\t" << role << endl; // write data to the file
+		//user.clear();
+		infile.close();   //close file
+        
+	}
+	else
+	{
+		cout << "\n Sorry username exist!!\n";
+	}
+
+	// to pause and clear screen
+	system("pause");
+	system("CLS");
+}
+
+void TeacherLogin()
+{
+}
+
+void TeacherMenu()
+{
+}
+
+void ForgotPassword()
+{
 }
