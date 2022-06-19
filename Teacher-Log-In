@@ -117,10 +117,39 @@ void Register()
 
 void TeacherLogin()
 {
+	bool login = false;
+	string u_name, pwd, line;
+
+	ifstream userFile;
+	userFile.open("users.txt", ios::in);
+	
+	cout << "\n Enter Username: ";
+	cin >> u_name;
+	cin.ignore();
+	cout << " Enter Password: ";
+	cin >> pwd;
+	while (getline(userFile, line))  // read whole file
+	{
+		//check if username and password entered by user matches file data
+		if (line.find(u_name) != string::npos && line.find(pwd) != string::npos)
+			login = true;  // if true , set login status true
+
+	}
+	// if login status is true , login is successful
+	if (login)
+		cout << "\n Login Successful!!\n";
+	else
+		cout << "\n Wrong username or password!\n";
+
+	userFile.close(); //close file
+
+	system("pause");
+	system("CLS");
 }
 
 void TeacherMenu()
 {
+	
 }
 
 void ForgotPassword()
